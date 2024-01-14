@@ -1,10 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate} from 'react-router-dom'
 import '../style/login.css'
 
 
 
+
 function Login() {
+    const navigate =useNavigate();
+
+    const dashBoard = () => {
+        navigate('/dashboard');
+    };
   return (
     <div className="login-template-container d-flex justify-content-center align-items-center vh-100 bg-primary">
         <div className='form_container p-5 rounded bg-white'>
@@ -26,7 +32,7 @@ function Login() {
 
                 </div>
                 <div className="d-grid">
-                    <button className='btn btn-primary'>Sign in </button>
+                    <button className='btn btn-primary'  onClick={dashBoard}>Sign in </button>
                 </div>
                 <p className="text-end mt-2">
                     Forget <a href=''>Password? </a><Link to='/signup' className='ms-2'>  SignUp </Link>

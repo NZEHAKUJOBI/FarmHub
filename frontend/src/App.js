@@ -1,32 +1,23 @@
-import './App.css';
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Login from './pages/Login'
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import 'bootstrap/dist/css/bootstrap.css';
-import { News } from './components/pages/News';
-import { Contact } from './components/pages/Contact';
+import React, { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
+import SideBar from "./components/Sidebar/Sidebar";
+import Content from "./components/Content/Content";
+import "./App.css";
 
+const App = () => {
+  const [sidebarIsOpen, setSidebarOpen] = useState(true);
+  const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
 
-
-function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element ={<Login/>}></Route>
-        <Route path='/signup' element ={<Signup/>}></Route>
-        <Route path='/dashboard' element ={<Dashboard/>}></Route>
-        <Route path='/About' element ={<about/>}></Route>
-        <Route path='/Home' element ={<home/>}></Route>
-        <Route path='/News' element ={<News/>}></Route>
-        <Route path='/Contact' element ={<Contact/>}></Route>
-
-      </Routes>
-    </BrowserRouter>
-   
-  
+    <Router>
+      <div className="App wrapper">
+        <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+        <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;

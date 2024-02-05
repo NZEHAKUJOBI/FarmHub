@@ -1,7 +1,89 @@
-import React from 'react'
+import React from "react";
+import logo from '../../assets/images/logo.svg';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHome,
+  faBriefcase,
+  faPaperPlane,
+  faQuestion,
+  faImage,
+  faCopy,
+} from "@fortawesome/free-solid-svg-icons";
+import { NavItem, NavLink, Nav } from "reactstrap";
+import classNames from "classnames";
+import { Link } from "react-router-dom";
 
-export const Sidebar = () => {
-  return (
-    <div>Sidebar</div>
-  )
-}
+import SubMenu from "../Navbar/SubMenu";
+
+const SideBar = ({ isOpen, toggle }) => (
+  <div className={classNames("sidebar", { "is-open": isOpen })}>
+    <div className="sidebar-header">
+      <span color="info" onClick={toggle} style={{ color: "#fff" }}>
+        &times;
+      </span>
+      <a className="navbar-brand" href="#">
+      {logo && <img src={logo} alt="FarmHub Logo" className="d-inline-block align-text-top"  width="60" height="30"/>}
+      FarmHub
+      </a>
+    </div>
+    <div className="side-menu">
+      <Nav vertical className="list-unstyled pb-3">
+        <SubMenu title="Home" icon={faHome} items={submenus[0]} />
+        <NavItem>
+          <NavLink tag={Link} to={"/about"}>
+            <FontAwesomeIcon icon={faBriefcase} className="mr-2" />
+            About
+          </NavLink>
+        </NavItem>
+        <SubMenu title="Pages" icon={faCopy} items={submenus[1]} />
+        <NavItem>
+          <NavLink tag={Link} to={"/pages"}>
+            <FontAwesomeIcon icon={faImage} className="mr-2" />
+            Portfolio
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to={"/faq"}>
+            <FontAwesomeIcon icon={faQuestion} className="mr-2" />
+            FAQ
+          </NavLink>
+        </NavItem>
+        <NavItem>
+          <NavLink tag={Link} to={"/contact"}>
+            <FontAwesomeIcon icon={faPaperPlane} className="mr-2" />
+            Contact
+          </NavLink>
+        </NavItem>
+      </Nav>
+    </div>
+  </div>
+);
+
+const submenus = [
+  [
+    {
+      title: "Home 1",
+      target: "Home-1",
+    },
+    // {
+    //   title: "Home 2",
+    //   target: "Home-2",
+    // },
+    {
+      itle: "Home 3",
+      target: "Home-3",
+    },
+  ],
+  [
+    {
+      title: "Page 1",
+      target: "Page-1",
+    },
+    // {
+    //   title: "Page 2",
+    //   target: "Page-2",
+    // },
+  ],
+];
+
+export default SideBar;

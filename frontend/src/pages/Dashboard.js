@@ -1,15 +1,23 @@
-import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
+import React, { useState } from "react";
+import { BrowserRouter as Router } from "react-router-dom";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function Dashboard() {
+import SideBar from "../components/Sidebar/Sidebar";
+import Content from "../components/Content/Content";
+import "../App.css";
+
+const Dashboard = () => {
+  const [sidebarIsOpen, setSidebarOpen] = useState(true);
+  const toggleSidebar = () => setSidebarOpen(!sidebarIsOpen);
+
   return (
-    <>
+    <Router>
+      <div className="App wrapper">
+        <SideBar toggle={toggleSidebar} isOpen={sidebarIsOpen} />
+        <Content toggleSidebar={toggleSidebar} sidebarIsOpen={sidebarIsOpen} />
+      </div>
+    </Router>
+  );
+};
 
-  
-    <Navbar/>
-    </>
-
-  )
-}
-
-export default Dashboard
+export default Dashboard;
